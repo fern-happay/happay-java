@@ -9,7 +9,7 @@ API documentation is available at <https://isac.happay.in/v2/api>.
 
 ## Usage
 
-Check out the [sample app](sample-app/app.java) which consumes this SDK!
+Check out the [sample app](sample-app/src/main/java/sample/App.java) which consumes this SDK!
 
 ```java
 String token = System.getenv("HAPPAY_TOKEN");
