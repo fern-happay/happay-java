@@ -1,11 +1,11 @@
 # {Company} Java Library
 
-![Maven Central](https://img.shields.io/maven-central/v/com.{company}/{company}-java) 
-![Sonatype Nexus (Releases)](https://img.shields.io/nexus/r/com.{company}/{company}-java?server=https%3A%2F%2Fs01.oss.sonatype.org)
+![Maven Central](https://img.shields.io/maven-central/v/com.happay/happay-java) 
+![Sonatype Nexus (Releases)](https://img.shields.io/nexus/r/com.happay/happay-java?server=https%3A%2F%2Fs01.oss.sonatype.org)
 
 ## Documentation
 
-API documentation is available at <{docs_url}>.
+API documentation is available at <https://isac.happay.in/v2/api>.
 
 ## Usage
 
