@@ -12,8 +12,27 @@ API documentation is available at <https://isac.happay.in/v2/api>.
 Check out the [sample app](.sample-app/app.java) which consumes this SDK!
 
 ```java
-// start with env variables
-TODO
+String token = System.getenv("HAPPAY_TOKEN");
+
+BearerAuth auth = BearerAuth.of(token);
+
+HappayApiClient happayApiClient =
+        new HappayApiClient(Environment.PRODUCTION, auth);
+try {
+    CreateAccountResponse createAccountResponse = happayApiClient.account().createAccount(CreateAccount.Request.builder()
+        .appId("foo123")
+        .appToken("bar456")
+        .requestId("cde789")
+        .body(CreateAccountRequest.builder()
+            .accountType(AccountTypes.LIMIT)
+            .userId("")
+            .build())
+        .build());
+} catch (CreateAccountException e) {
+    e.printStackTrace();
+        }
+    }
+}
 ```
 
 ## Beta status
