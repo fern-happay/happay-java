@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'com.diffplug.spotless' version '6.11.0'
 }
 
 repositories {
@@ -19,6 +20,12 @@ dependencies {
     api 'io.github.openfeign:feign-jaxrs2:11.8'
 }
 
+spotless {
+    java {
+        googleJavaFormat()
+    }
+}
+
 java {
     withSourcesJar()
     withJavadocJar()
@@ -29,7 +36,7 @@ publishing {
         maven(MavenPublication) {
             groupId = 'io.github.fern-api'
             artifactId = 'happay'
-            version = '0.0.5'
+            version = '0.0.6'
             from components.java
         }
     }

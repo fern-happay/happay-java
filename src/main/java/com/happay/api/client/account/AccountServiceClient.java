@@ -25,7 +25,7 @@ public final class AccountServiceClient {
 
   public CreateAccountResponse createAccount(CreateAccount.Request request) throws
       CreateAccountException {
-    BearerAuth authValue = request.getAuthOverride().orElseGet(() -> this.auth.orElseThrow(() -> new RuntimeException("Auth is required for createAccount")));
+    BearerAuth authValue = request.getAuthOverride().orElseGet(() -> this.auth.orElseThrow(() -> new RuntimeException("Auth is required")));
     return this.service.createAccount(authValue, request.getAppId(), request.getAppToken(), request.getRequestId(), request.getBody());
   }
 }

@@ -78,7 +78,7 @@ public final class CreateAccountResponse {
   @JsonIgnoreProperties(
       ignoreUnknown = true
   )
-  static final class Builder implements AccountIdStage, UserIdStage, _FinalStage {
+  public static final class Builder implements AccountIdStage, UserIdStage, _FinalStage {
     private String accountId;
 
     private String userId;

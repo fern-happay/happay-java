@@ -13,8 +13,6 @@ public final class CreateAccount {
   }
 
   public static final class Request {
-    private final Optional<BearerAuth> authOverride;
-
     private final String appId;
 
     private final String appToken;
@@ -23,19 +21,17 @@ public final class CreateAccount {
 
     private final CreateAccountRequest body;
 
+    private final Optional<BearerAuth> authOverride;
+
     private int _cachedHashCode;
 
-    Request(Optional<BearerAuth> authOverride, String appId, String appToken, String requestId,
-        CreateAccountRequest body) {
-      this.authOverride = authOverride;
+    Request(String appId, String appToken, String requestId, CreateAccountRequest body,
+        Optional<BearerAuth> authOverride) {
       this.appId = appId;
       this.appToken = appToken;
       this.requestId = requestId;
       this.body = body;
-    }
-
-    public Optional<BearerAuth> getAuthOverride() {
-      return authOverride;
+      this.authOverride = authOverride;
     }
 
     public String getAppId() {
@@ -54,6 +50,10 @@ public final class CreateAccount {
       return body;
     }
 
+    public Optional<BearerAuth> getAuthOverride() {
+      return authOverride;
+    }
+
     @Override
     public boolean equals(Object other) {
       if (this == other) return true;
@@ -61,20 +61,20 @@ public final class CreateAccount {
     }
 
     private boolean equalTo(Request other) {
-      return authOverride.equals(other.authOverride) && appId.equals(other.appId) && appToken.equals(other.appToken) && requestId.equals(other.requestId) && body.equals(other.body);
+      return appId.equals(other.appId) && appToken.equals(other.appToken) && requestId.equals(other.requestId) && body.equals(other.body) && authOverride.equals(other.authOverride);
     }
 
     @Override
     public int hashCode() {
       if (_cachedHashCode == 0) {
-        _cachedHashCode = Objects.hash(this.authOverride, this.appId, this.appToken, this.requestId, this.body);
+        _cachedHashCode = Objects.hash(this.appId, this.appToken, this.requestId, this.body, this.authOverride);
       }
       return _cachedHashCode;
     }
 
     @Override
     public String toString() {
-      return "CreateAccount.Request{" + "authOverride: " + authOverride + ", appId: " + appId + ", appToken: " + appToken + ", requestId: " + requestId + ", body: " + body + "}";
+      return "CreateAccount.Request{" + "appId: " + appId + ", appToken: " + appToken + ", requestId: " + requestId + ", body: " + body + ", authOverride: " + authOverride + "}";
     }
 
     public static AppIdStage builder() {
@@ -107,7 +107,7 @@ public final class CreateAccount {
       _FinalStage authOverride(BearerAuth authOverride);
     }
 
-    static final class Builder implements AppIdStage, AppTokenStage, RequestIdStage, BodyStage, _FinalStage {
+    public static final class Builder implements AppIdStage, AppTokenStage, RequestIdStage, BodyStage, _FinalStage {
       private String appId;
 
       private String appToken;
@@ -123,11 +123,11 @@ public final class CreateAccount {
 
       @Override
       public Builder from(Request other) {
-        authOverride(other.getAuthOverride());
         appId(other.getAppId());
         appToken(other.getAppToken());
         requestId(other.getRequestId());
         body(other.getBody());
+        authOverride(other.getAuthOverride());
         return this;
       }
 
@@ -169,7 +169,7 @@ public final class CreateAccount {
 
       @Override
       public Request build() {
-        return new Request(authOverride, appId, appToken, requestId, body);
+        return new Request(appId, appToken, requestId, body, authOverride);
       }
     }
   }
